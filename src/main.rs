@@ -1,3 +1,5 @@
+use bisq_cli::cli;
+
 fn main() {
-    println!("Hello, world!");
+    cli::run();
 }
