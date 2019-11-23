@@ -11,4 +11,6 @@ curl -s https://raw.githubusercontent.com/cbeams/bisq/grpc-api/core/src/main/pro
   | sed 's#\(.*java\)#// \1#' \
   > ${REPO_ROOT_DIR}/proto/grpc.proto
 
-protoc --rust_out=${REPO_ROOT_DIR}/src/generated/ --grpc_out=${REPO_ROOT_DIR}/src/generated/ --plugin=protoc-gen-grpc=`which grpc_rust_plugin` --proto_path=${REPO_ROOT_DIR}/proto/ ${REPO_ROOT_DIR}/proto/*
+cp ${REPO_ROOT_DIR}/gen-proto.rs ${REPO_ROOT_DIR}/build.rs
+cargo build
+rm ${REPO_ROOT_DIR}/build.rs
