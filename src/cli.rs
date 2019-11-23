@@ -1,4 +1,4 @@
-use crate::bisq;
+use crate::client;
 use clap::{clap_app, crate_version, App};
 
 fn app() -> App<'static, 'static> {
@@ -13,10 +13,20 @@ fn app() -> App<'static, 'static> {
     )
 }
 
-pub fn run() {
+pub async fn run() {
     let matches = app().get_matches();
     match matches.subcommand() {
-        ("get-version", Some(_)) => bisq::get_version(),
+        ("get-version", Some(_)) => get_version(),
         _ => unreachable!(),
+    }.await
+}
+
+async fn get_version() {
+    match client::get_version().await {
+        Err(e) => {
+            eprintln!("Error getting version: {:?}", e);
+            std::process::exit(1)
+        }
+        Ok(version) => println!("Daemon is on version: v{}",version)
     }
 }

@@ -1,2 +1,2 @@
-mod bisq;
 pub mod cli;
+mod client;
