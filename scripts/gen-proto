@@ -1,0 +1,14 @@
+#!/bin/bash
+
+REPO_ROOT_DIR="$(dirname $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd ))"
+
+echo "Downloading common/src/main/proto/pb.proto from bisq github"
+curl -s https://raw.githubusercontent.com/bisq-network/bisq/master/common/src/main/proto/pb.proto \
+  | sed 's#\(.*java\)#// \1#' \
+  > ${REPO_ROOT_DIR}/proto/pb.proto
+
+curl -s https://raw.githubusercontent.com/cbeams/bisq/grpc-api/core/src/main/proto/grpc.proto \
+  | sed 's#\(.*java\)#// \1#' \
+  > ${REPO_ROOT_DIR}/proto/grpc.proto
+
+protoc --rust_out=${REPO_ROOT_DIR}/src/generated/ --grpc_out=${REPO_ROOT_DIR}/src/generated/ --plugin=protoc-gen-grpc=`which grpc_rust_plugin` --proto_path=${REPO_ROOT_DIR}/proto/ ${REPO_ROOT_DIR}/proto/grpc.proto
