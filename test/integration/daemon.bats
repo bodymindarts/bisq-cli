@@ -12,6 +12,6 @@ teardown() {
 
 @test "returns version" {
 
-  retry 5 1 ${cli} get-version
+  retry 10 2 ${cli} get-version
 
 }
