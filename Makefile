@@ -10,3 +10,7 @@ test:
 integration:
 	cargo build
 	export BISQ_CLI_BIN_DIR="$(if $(BISQ_CLI_BIN_DIR),$(BISQ_CLI_BIN_DIR),./target/debug)" && bats -t -r test/integration
+
+test-in-ci:
+	cargo clippy --all-features
+	cargo test --all-features --verbose --locked
