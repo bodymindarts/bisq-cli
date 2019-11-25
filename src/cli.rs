@@ -27,6 +27,6 @@ async fn get_version() {
             eprintln!("Error getting version: {:?}", e);
             std::process::exit(1)
         }
-        Ok(version) => println!("Daemon is on version: v{}",version)
+        Ok(version) => println!("v{}",version)
     }
 }
