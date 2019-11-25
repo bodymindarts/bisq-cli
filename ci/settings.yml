@@ -1,9 +1,0 @@
-meta:
-  github_owner: bodymindarts
-  github_repo: bisq-cli
-  github_private_key: ((github-ssh-key.private_key))
-  github_access_token: ((github-access-token))
-  git_uri: git@github.com:bodymindarts/bisq-cli.git
-  git_branch: ci
-  dockerhub_org: bodymindarts
-  crates_api_token: ((crates-api-token))
