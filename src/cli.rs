@@ -1,4 +1,4 @@
-use crate::client;
+use crate::commands;
 use clap::{clap_app, crate_version, App};
 
 fn app() -> App<'static, 'static> {
@@ -22,7 +22,7 @@ pub async fn run() {
 }
 
 async fn get_version() {
-    match client::get_version().await {
+    match commands::get_version().await {
         Err(e) => {
             eprintln!("Error getting version: {:?}", e);
             std::process::exit(1)

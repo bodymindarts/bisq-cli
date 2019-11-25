@@ -4,4 +4,4 @@
 #![allow(clippy::too_many_arguments)]
 
 pub mod cli;
-mod client;
+mod commands;
